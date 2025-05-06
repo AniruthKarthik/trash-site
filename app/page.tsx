@@ -12,6 +12,14 @@ export default function Home() {
 
   const featuredProjects = [
     {
+      id: "titanic-survival",
+      title: "Will U Survive the Titanic",
+      description:
+        "Interactive survival predictor using machine learning to determine if you would survive the Titanic disaster.",
+      image: "/placeholder.svg?height=400&width=600",
+      technologies: ["Machine Learning", "Predictive Analysis", "Interactive"],
+    },
+    {
       id: "neural-network",
       title: "Neural Network Research",
       description: "Novel approach to neural network architecture with improved efficiency for computer vision tasks.",
@@ -24,13 +32,6 @@ export default function Home() {
       description: "Research on advanced sentiment analysis techniques using transformer-based models.",
       image: "/placeholder.svg?height=400&width=600",
       technologies: ["BERT", "Transformers", "Python"],
-    },
-    {
-      id: "ai-ethics",
-      title: "AI Ethics Framework",
-      description: "Developing an ethical framework for responsible AI development and deployment.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Research", "Ethics", "Policy"],
     },
   ]
 

@@ -8,6 +8,15 @@ export default function ProjectsPage() {
 
   const projects = [
     {
+      id: "titanic-survival",
+      title: "Will U Survive the Titanic",
+      description:
+        "Interactive survival predictor using machine learning to determine if you would survive the Titanic disaster.",
+      image: "/placeholder.svg?height=400&width=600",
+      technologies: ["Machine Learning", "Predictive Analysis", "Interactive"],
+      category: "interactive",
+    },
+    {
       id: "neural-network",
       title: "Neural Network Research",
       description: "Novel approach to neural network architecture with improved efficiency for computer vision tasks.",
@@ -22,14 +31,6 @@ export default function ProjectsPage() {
       image: "/placeholder.svg?height=400&width=600",
       technologies: ["BERT", "Transformers", "Python"],
       category: "nlp",
-    },
-    {
-      id: "ai-ethics",
-      title: "AI Ethics Framework",
-      description: "Developing an ethical framework for responsible AI development and deployment.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Research", "Ethics", "Policy"],
-      category: "ethics",
     },
     {
       id: "data-analysis",
@@ -59,9 +60,9 @@ export default function ProjectsPage() {
 
   const categories = [
     { id: "all", name: "All Research" },
+    { id: "interactive", name: "Interactive Projects" },
     { id: "ai", name: "AI & Machine Learning" },
     { id: "nlp", name: "Natural Language Processing" },
-    { id: "ethics", name: "AI Ethics" },
     { id: "data", name: "Data Analysis" },
     { id: "publication", name: "Publications" },
     { id: "visualization", name: "Visualization" },

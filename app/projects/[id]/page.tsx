@@ -10,6 +10,19 @@ export default function ProjectPage() {
 
   // This would typically come from an API or database
   const projects = {
+    "titanic-survival": {
+      title: "Will U Survive the Titanic",
+      description:
+        "Interactive survival predictor using machine learning to determine if you would survive the Titanic disaster.",
+      image: "/placeholder.svg?height=600&width=800",
+      technologies: ["Machine Learning", "Predictive Analysis", "Interactive"],
+      category: "interactive",
+      github: "https://github.com/example/titanic-survival",
+      demo: "/projects/titanic-survival",
+      longDescription:
+        "This interactive project uses machine learning algorithms trained on historical data from the 1912 Titanic disaster to predict whether you would have survived based on your personal characteristics. The model analyzes factors such as age, gender, passenger class, and family size to generate a personalized survival probability. The project demonstrates how historical data can be used to create engaging interactive experiences while educating users about the factors that influenced survival rates during this historic tragedy.",
+      isInteractive: true,
+    },
     "neural-network": {
       title: "Neural Network Research",
       description: "Novel approach to neural network architecture with improved efficiency for computer vision tasks.",
@@ -31,17 +44,6 @@ export default function ProjectPage() {
       demo: "https://nlp-research.example.com",
       longDescription:
         "This research project investigates advanced sentiment analysis techniques using transformer-based models. We fine-tuned BERT and other transformer architectures on domain-specific data to improve sentiment classification accuracy in specialized contexts such as healthcare reviews and academic feedback. Our approach demonstrates how transfer learning can be effectively applied to sentiment analysis tasks with limited labeled data, achieving state-of-the-art results on several benchmark datasets.",
-    },
-    "ai-ethics": {
-      title: "AI Ethics Framework",
-      description: "Developing an ethical framework for responsible AI development and deployment.",
-      image: "/placeholder.svg?height=600&width=800",
-      technologies: ["Research", "Ethics", "Policy"],
-      category: "ethics",
-      github: "https://github.com/example/ai-ethics-framework",
-      demo: "https://ai-ethics.example.com",
-      longDescription:
-        "This research project focuses on developing a comprehensive ethical framework for responsible AI development and deployment. Through literature review, stakeholder interviews, and case studies, we identified key ethical considerations and created practical guidelines for researchers and developers. The framework addresses issues such as bias, fairness, transparency, accountability, and privacy, providing actionable recommendations for each stage of the AI lifecycle from data collection to deployment and monitoring.",
     },
     "blockchain-explorer": {
       title: "Research Data Management System",
@@ -111,14 +113,23 @@ export default function ProjectPage() {
         >
           <Github size={16} /> View on GitHub
         </a>
-        <a
-          href={project.demo}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-md transition-colors border border-primary/30"
-        >
-          <ExternalLink size={16} /> Live Demo
-        </a>
+        {project.isInteractive ? (
+          <Link
+            href="/projects/titanic-survival"
+            className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-md transition-colors border border-primary/30"
+          >
+            <ExternalLink size={16} /> Try Interactive Demo
+          </Link>
+        ) : (
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-md transition-colors border border-primary/30"
+          >
+            <ExternalLink size={16} /> Live Demo
+          </a>
+        )}
       </div>
 
       <div className="prose prose-invert max-w-none">
