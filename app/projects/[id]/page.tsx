@@ -115,7 +115,7 @@ export default function ProjectPage() {
         </a>
         {project.isInteractive ? (
           <Link
-            href="/projects/titanic-survival"
+            href={`/projects/${id}`}
             className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-md transition-colors border border-primary/30"
           >
             <ExternalLink size={16} /> Try Interactive Demo
