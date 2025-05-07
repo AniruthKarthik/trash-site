@@ -7,14 +7,7 @@ import { TitanicForm } from "@/components/titanic-form"
 import { TitanicResult } from "@/components/titanic-result"
 
 type FormState = {
-  name: string
-  age: string
-  gender: string
-  pclass: string
-  siblings: string
-  parents: string
-  embarked: string
-  fare: string
+  [key: string]: string | number
 }
 
 export default function TitanicSurvivalPage() {
@@ -29,16 +22,18 @@ export default function TitanicSurvivalPage() {
     }[]
   } | null>(null)
 
-  const handleSubmit = async (data: FormState): Promise<void> => {
+  const handleSubmit = async (data: FormState) => {
     setFormData(data)
     setIsLoading(true)
 
+    // Simulate processing time
     await new Promise((resolve) => setTimeout(resolve, 3000))
 
-    let probability = 0.5
+    // Calculate survival probability based on historical data
+    let probability = 0.5 // Base probability
     const factors = []
 
-    // Gender
+    // Gender factor (historically, women had higher survival rates)
     if (data.gender === "female") {
       probability += 0.2
       factors.push({
@@ -55,7 +50,7 @@ export default function TitanicSurvivalPage() {
       })
     }
 
-    // Age
+    // Age factor
     const age = Number(data.age)
     if (age < 16) {
       probability += 0.15
@@ -79,7 +74,7 @@ export default function TitanicSurvivalPage() {
       })
     }
 
-    // Class
+    // Class factor
     const pclass = String(data.pclass)
     if (pclass.includes("1st")) {
       probability += 0.15
@@ -104,7 +99,7 @@ export default function TitanicSurvivalPage() {
       })
     }
 
-    // Family size
+    // Family size factor
     const familySize = Number(data.siblings) + Number(data.parents)
     if (familySize === 0) {
       probability -= 0.05
@@ -113,7 +108,7 @@ export default function TitanicSurvivalPage() {
         impact: "negative",
         description: "Passengers traveling alone had slightly lower survival rates",
       })
-    } else if (familySize <= 3) {
+    } else if (familySize >= 1 && familySize <= 3) {
       probability += 0.05
       factors.push({
         factor: "Family Size",
@@ -129,7 +124,7 @@ export default function TitanicSurvivalPage() {
       })
     }
 
-    // Embarkation
+    // Embarkation point
     const embarked = String(data.embarked)
     if (embarked === "Cherbourg") {
       probability += 0.05
@@ -147,7 +142,7 @@ export default function TitanicSurvivalPage() {
       })
     }
 
-    // Fare
+    // Fare factor
     const fare = Number(data.fare)
     if (fare > 50) {
       probability += 0.1
@@ -165,8 +160,12 @@ export default function TitanicSurvivalPage() {
       })
     }
 
-    // Clamp and add randomness
-    probability = Math.max(0.1, Math.min(0.9, probability + Math.random() * 0.1 - 0.05))
+    // Ensure probability is between 0 and 1
+    probability = Math.max(0.1, Math.min(0.9, probability))
+
+    // Add some randomness (±0.05)
+    probability += Math.random() * 0.1 - 0.05
+    probability = Math.max(0.1, Math.min(0.9, probability))
 
     setResult({
       survivalProbability: probability,
@@ -230,7 +229,7 @@ export default function TitanicSurvivalPage() {
           <TitanicForm onSubmit={handleSubmit} isLoading={isLoading} />
         ) : (
           <TitanicResult
-            name={formData.name}
+            name={formData.name as string}
             survivalProbability={result.survivalProbability}
             factors={result.factors}
             onReset={resetAnalysis}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
 type FormField = {
@@ -65,7 +65,6 @@ export function TitanicForm({ onSubmit, isLoading }: TitanicFormProps) {
       type: "select",
       options: ["Cherbourg", "Queenstown", "Southampton"],
     },
-    { id: "address", label: "What is your address?", type: "text", placeholder: "Enter your address" },
   ]
 
   const currentField = formFields[currentStep]
@@ -93,26 +92,26 @@ export function TitanicForm({ onSubmit, isLoading }: TitanicFormProps) {
     return true
   }
 
-  // Simulate typing effect for the question
-  const displayedQuestion = currentField.label.substring(0, typingIndex)
-
   // Increment typing index for animation
-  useState(() => {
+  useEffect(() => {
     if (typingIndex < currentField.label.length) {
       const timer = setTimeout(() => {
         setTypingIndex(typingIndex + 1)
       }, 50)
       return () => clearTimeout(timer)
     }
-  })
+  }, [typingIndex, currentField.label.length])
 
   // Blinking cursor effect
-  useState(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setShowCursor((prev) => !prev)
     }, 500)
     return () => clearInterval(timer)
-  })
+  }, [])
+
+  // Simulate typing effect for the question
+  const displayedQuestion = currentField.label.substring(0, typingIndex)
 
   return (
     <div className="terminal-window">

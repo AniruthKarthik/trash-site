@@ -16,7 +16,7 @@ export default function Home() {
       title: "Will U Survive the Titanic",
       description:
         "Interactive survival predictor using machine learning to determine if you would survive the Titanic disaster.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/titanic.png",
       technologies: ["Machine Learning", "Predictive Analysis", "Interactive"],
     },
     {

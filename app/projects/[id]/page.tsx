@@ -14,7 +14,7 @@ export default function ProjectPage() {
       title: "Will U Survive the Titanic",
       description:
         "Interactive survival predictor using machine learning to determine if you would survive the Titanic disaster.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/titanic.png",
       technologies: ["Machine Learning", "Predictive Analysis", "Interactive"],
       category: "interactive",
       github: "https://github.com/example/titanic-survival",
@@ -64,6 +64,10 @@ export default function ProjectPage() {
     notFound()
   }
 
+  // Use a default placeholder if image is empty or undefined
+  const imageSrc =
+    project.image && project.image.trim() !== "" ? project.image : "/placeholder.svg?height=600&width=800"
+
   return (
     <div className="space-y-8">
       <Link href="/projects" className="inline-flex items-center gap-2 text-primary hover:underline">
@@ -101,7 +105,7 @@ export default function ProjectPage() {
       </div>
 
       <div className="relative h-80 rounded-md overflow-hidden">
-        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+        <Image src={imageSrc || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
       </div>
 
       <div className="flex flex-wrap gap-4">
@@ -115,7 +119,7 @@ export default function ProjectPage() {
         </a>
         {project.isInteractive ? (
           <Link
-            href={`/projects/${id}`}
+            href={project.demo}
             className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-md transition-colors border border-primary/30"
           >
             <ExternalLink size={16} /> Try Interactive Demo
